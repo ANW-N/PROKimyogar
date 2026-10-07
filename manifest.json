@@ -1,0 +1,19 @@
+{
+    "name": "PROKimyogar",
+    "short_name": "PROKimyogar",
+    "description": "Kimyo uchun zamonaviy yordamchi ilova",
+    "start_url": "./",
+    "scope": "./",
+    "display": "standalone",
+    "background_color": "#0b1220",
+    "theme_color": "#0b1220",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "./icon/logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}

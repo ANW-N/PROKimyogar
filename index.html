@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROKimyogar</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0b1220">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link rel="icon" type="image/png" href="icon/logo.png">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PN2B3WJX3R"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-PN2B3WJX3R');
+    </script>
+</head>
+<body>
+    <script>
+        const atomicMasses = {
+
+            H:  [1.008, 1, "p", "Vodorod", 1, [1], 2.20],
+            He: [4.002602, 4, "s", "Geliy", 2, [2], null],
+
+            Li: [6.94, 7, "p", "Litiy", 3, [2,1], 0.98],
+            Be: [9.0121831, 9, "p", "Berilliy", 4, [2,2], 1.57],
+            B:  [10.81, 11, "s", "Bor", 5, [2,3], 2.04],
+            C:  [12.011, 12, "s", "Uglerod", 6, [2,4], 2.55],
+            N:  [14.007, 14, "s", "Azot", 7, [2,5], 3.04],
+            O:  [15.999, 16, "s", "Kislorod", 8, [2,6], 3.44],
+            F:  [18.998403162, 19, "s", "Ftor", 9, [2,7], 3.98],
+            Ne: [20.1797, 20, "s", "Neon", 10, [2,8], null],
+
+            Na: [22.98976928, 23, "p", "Natriy", 11, [2,8,1], 0.93],
+            Mg: [24.305, 24, "p", "Magniy", 12, [2,8,2], 1.31],
+            Al: [26.9815384, 27, "s", "Alyuminiy", 13, [2,8,3], 1.61],
+            Si: [28.085, 28, "s", "Kremniy", 14, [2,8,4], 1.90],
+            P:  [30.973761998, 31, "s", "Fosfor", 15, [2,8,5], 2.19],
+            S:  [32.06, 32, "s", "Oltingugurt", 16, [2,8,6], 2.58],
+            Cl: [35.45, 35, "s", "Xlor", 17, [2,8,7], 3.16],
+            Ar: [39.95, 40, "s", "Argon", 18, [2,8,8], null],
+
+            K:  [39.0983, 39, "p", "Kaliy", 19, [2,8,8,1], 0.82],
+            Ca: [40.078, 40, "p", "Kalsiy", 20, [2,8,8,2], 1.00],
+            Sc: [44.955907, 45, "k", "Skandiy", 21, [2,8,9,2], 1.36],
+            Ti: [47.867, 48, "k", "Titan", 22, [2,8,10,2], 1.54],
+            V:  [50.9415, 51, "k", "Vanadiy", 23, [2,8,11,2], 1.63],
+            Cr: [51.9961, 52, "k", "Xrom", 24, [2,8,13,1], 1.66],
+            Mn: [54.938043, 55, "k", "Marganes", 25, [2,8,13,2], 1.55],
+            Fe: [55.845, 56, "k", "Temir", 26, [2,8,14,2], 1.83],
+            Co: [58.933194, 59, "k", "Kobalt", 27, [2,8,15,2], 1.88],
+            Ni: [58.6934, 59, "k", "Nikel", 28, [2,8,16,2], 1.91],
+            Cu: [63.546, 64, "k", "Mis", 29, [2,8,18,1], 1.90],
+            Zn: [65.38, 65, "k", "Rux", 30, [2,8,18,2], 1.65],
+
+            Ga: [69.723, 70, "s", "Galliy", 31, [2,8,18,3], 1.81],
+            Ge: [72.630, 73, "s", "Germaniy", 32, [2,8,18,4], 2.01],
+            As: [74.921595, 75, "s", "Mishyak", 33, [2,8,18,5], 2.18],
+            Se: [78.971, 79, "s", "Selen", 34, [2,8,18,6], 2.55],
+            Br: [79.904, 80, "s", "Brom", 35, [2,8,18,7], 2.96],
+            Kr: [83.798, 84, "s", "Kripton", 36, [2,8,18,8], null],
+
+            Rb: [85.4678, 85, "p", "Rubidiy", 37, [2,8,18,8,1], 0.82],
+            Sr: [87.62, 88, "p", "Stronsiy", 38, [2,8,18,8,2], 0.95],
+            Y:  [88.905838, 89, "k", "Ittriy", 39, [2,8,18,9,2], 1.22],
+            Zr: [91.224, 91, "k", "Sirkoniy", 40, [2,8,18,10,2], 1.33],
+            Nb: [92.90637, 93, "k", "Niobiy", 41, [2,8,18,12,1], 1.60],
+            Mo: [95.95, 96, "k", "Molibden", 42, [2,8,18,13,1], 2.16],
+            Tc: [98, 98, "k", "Texnetsiy", 43, [2,8,18,13,2], 1.90],
+            Ru: [101.07, 101, "k", "Ruteniy", 44, [2,8,18,15,1], 2.20],
+            Rh: [102.90549, 103, "k", "Rodiy", 45, [2,8,18,16,1], 2.28],
+            Pd: [106.42, 106, "k", "Palladiy", 46, [2,8,18,18], 2.20],
+            Ag: [107.8682, 108, "k", "Kumush", 47, [2,8,18,18,1], 1.93],
+            Cd: [112.414, 112, "k", "Kadmiy", 48, [2,8,18,18,2], 1.69],
+
+            In: [114.818, 115, "s", "Indiy", 49, [2,8,18,18,3], 1.78],
+            Sn: [118.710, 119, "s", "Qalay", 50, [2,8,18,18,4], 1.96],
+            Sb: [121.760, 122, "s", "Surma", 51, [2,8,18,18,5], 2.05],
+            Te: [127.60, 128, "s", "Tellur", 52, [2,8,18,18,6], 2.10],
+            I:  [126.90447, 127, "s", "Yod", 53, [2,8,18,18,7], 2.66],
+            Xe: [131.293, 131, "s", "Ksenon", 54, [2,8,18,18,8], 2.60],
+
+            Cs: [132.90545196, 133, "p", "Seziy", 55, [2,8,18,18,8,1], 0.79],
+            Ba: [137.327, 137, "p", "Bariy", 56, [2,8,18,18,8,2], 0.89],
+
+            La: [138.90547, 139, "y", "Lantan", 57, [2,8,18,18,9,2], 1.10],
+            Ce: [140.116, 140, "y", "Seriy", 58, [2,8,18,19,9,2], 1.12],
+            Pr: [140.90766, 141, "y", "Prazeodim", 59, [2,8,18,21,8,2], 1.13],
+            Nd: [144.242, 144, "y", "Neodim", 60, [2,8,18,22,8,2], 1.14],
+            Pm: [145, 145, "y", "Prometiy", 61, [2,8,18,23,8,2], 1.13],
+            Sm: [150.36, 150, "y", "Samariy", 62, [2,8,18,24,8,2], 1.17],
+            Eu: [151.964, 152, "y", "Yevropiy", 63, [2,8,18,25,8,2], 1.20],
+            Gd: [157.249, 157, "y", "Gadoliniy", 64, [2,8,18,25,9,2], 1.20],
+            Tb: [158.925354, 159, "y", "Terbiy", 65, [2,8,18,27,8,2], 1.10],
+            Dy: [162.500, 163, "y", "Disproziy", 66, [2,8,18,28,8,2], 1.22],
+            Ho: [164.930329, 165, "y", "Golmiy", 67, [2,8,18,29,8,2], 1.23],
+            Er: [167.259, 167, "y", "Erbiy", 68, [2,8,18,30,8,2], 1.24],
+            Tm: [168.934219, 169, "y", "Tuliy", 69, [2,8,18,31,8,2], 1.25],
+            Yb: [173.045, 173, "y", "Itterbiy", 70, [2,8,18,32,8,2], 1.10],
+            Lu: [174.9668, 175, "y", "Lyutetsiy", 71, [2,8,18,32,9,2], 1.27],
+
+            Hf: [178.486, 178, "k", "Gafniy", 72, [2,8,18,32,10,2], 1.30],
+            Ta: [180.94788, 181, "k", "Tantal", 73, [2,8,18,32,11,2], 1.50],
+            W:  [183.84, 184, "k", "Volfram", 74, [2,8,18,32,12,2], 2.36],
+            Re: [186.207, 186, "k", "Reniy", 75, [2,8,18,32,13,2], 1.90],
+            Os: [190.23, 190, "k", "Osmiy", 76, [2,8,18,32,14,2], 2.20],
+            Ir: [192.217, 192, "k", "Iridiy", 77, [2,8,18,32,15,2], 2.20],
+            Pt: [195.084, 195, "k", "Platina", 78, [2,8,18,32,17,1], 2.28],
+            Au: [196.966570, 197, "k", "Oltin", 79, [2,8,18,32,18,1], 2.40],
+            Hg: [200.592, 201, "k", "Simob", 80, [2,8,18,32,18,2], 2.00],
+
+            Tl: [204.38, 204, "s", "Talliy", 81, [2,8,18,32,18,3], 1.62],
+            Pb: [207.2, 207, "s", "Qo‘rg‘oshin", 82, [2,8,18,32,18,4], 2.33],
+            Bi: [208.98040, 209, "s", "Vismut", 83, [2,8,18,32,18,5], 2.02],
+            Po: [209, 209, "s", "Poloniy", 84, [2,8,18,32,18,6], 2.00],
+            At: [210, 210, "s", "Astat", 85, [2,8,18,32,18,7], 2.20],
+            Rn: [222, 222, "s", "Radon", 86, [2,8,18,32,18,8], null],
+
+            Fr: [223, 223, "p", "Fransiy", 87, [2,8,18,32,18,8,1], 0.70],
+            Ra: [226, 226, "p", "Radiy", 88, [2,8,18,32,18,8,2], 0.90],
+
+            Ac: [227, 227, "y", "Aktiniy", 89, [2,8,18,32,18,9,2], 1.10],
+            Th: [232.0377, 232, "y", "Toriy", 90, [2,8,18,32,18,10,2], 1.30],
+            Pa: [231.03588, 231, "y", "Protaktiniy", 91, [2,8,18,32,20,9,2], 1.50],
+            U:  [238.02891, 238, "y", "Uran", 92, [2,8,18,32,21,9,2], 1.38],
+            Np: [237, 237, "y", "Neptuniy", 93, [2,8,18,32,22,9,2], 1.36],
+            Pu: [244, 244, "y", "Plutoniy", 94, [2,8,18,32,24,8,2], 1.28],
+            Am: [243, 243, "y", "Ameritsiy", 95, [2,8,18,32,25,8,2], 1.13],
+            Cm: [247, 247, "y", "Kyuriy", 96, [2,8,18,32,25,9,2], 1.28],
+            Bk: [247, 247, "y", "Berkliy", 97, [2,8,18,32,27,8,2], 1.30],
+            Cf: [251, 251, "y", "Kaliforniy", 98, [2,8,18,32,28,8,2], 1.30],
+            Es: [252, 252, "y", "Eynshteyniy", 99, [2,8,18,32,29,8,2], 1.30],
+            Fm: [257, 257, "y", "Fermiy", 100, [2,8,18,32,30,8,2], 1.30],
+            Md: [258, 258, "y", "Mendeleviy", 101, [2,8,18,32,31,8,2], 1.30],
+            No: [259, 259, "y", "Nobeliy", 102, [2,8,18,32,32,8,2], 1.30],
+            Lr: [266, 266, "y", "Lavrensiy", 103, [2,8,18,32,32,8,3], null],
+
+            Rf: [267, 267, "k", "Rezerfordiy", 104, [2,8,18,32,32,10,2], null],
+            Db: [268, 268, "k", "Dubniy", 105, [2,8,18,32,32,11,2], null],
+            Sg: [269, 269, "k", "Siborgiy", 106, [2,8,18,32,32,12,2], null],
+            Bh: [270, 270, "k", "Boriy", 107, [2,8,18,32,32,13,2], null],
+            Hs: [269, 269, "k", "Hassiy", 108, [2,8,18,32,32,14,2], null],
+            Mt: [278, 278, "k", "Meytneriy", 109, [2,8,18,32,32,15,2], null],
+            Ds: [281, 281, "k", "Darmstadtiy", 110, [2,8,18,32,32,16,2], null],
+            Rg: [282, 282, "k", "Rentgeniy", 111, [2,8,18,32,32,17,2], null],
+            Cn: [285, 285, "k", "Kopernitsiy", 112, [2,8,18,32,32,18,2], null],
+
+            Nh: [286, 286, "s", "Nihoniy", 113, [2,8,18,32,32,18,3], null],
+            Fl: [289, 289, "s", "Fleroviy", 114, [2,8,18,32,32,18,4], null],
+            Mc: [290, 290, "s", "Moskoviy", 115, [2,8,18,32,32,18,5], null],
+            Lv: [293, 293, "s", "Livermoriy", 116, [2,8,18,32,32,18,6], null],
+            Ts: [294, 294, "s", "Tennessin", 117, [2,8,18,32,32,18,7], null],
+            Og: [294, 294, "s", "Oganesson", 118, [2,8,18,32,32,18,8], null]
+
+        };
+    </script>
+
+    <section class="tools onCalculator" id="tools">
+        <button id="install-btn">
+            <i class="fa-solid fa-download"></i>
+            Ilovani o‘rnatish
+        </button>
+        <button id="theme-toggle">
+                <div id="theme-icon">
+                    <i class="fa-solid fa-sun fa-spin" style="color: rgb(255, 212, 59);"></i>
+                </div>
+                <script>
+                    const themeToggle = document.getElementById('theme-toggle')
+                    themeToggle.addEventListener('click', () => {
+                        document.body.classList.toggle('light-mode')
+                        if (theme == 'light') {
+                            localStorage.setItem('theme', 'dark')
+                            theme = 'dark'
+                            themeIcon.innerHTML = `<i class="fa-solid fa-sun fa-spin" style="color: rgb(255, 212, 59);"></i>`
+                        } else {
+                            localStorage.setItem('theme', 'light')
+                            theme = 'light'
+                            themeIcon.innerHTML = `<i class="fa-solid fa-moon"></i>`
+                        }
+                    })
+                </script>
+        </button>
+        <div id="history">
+            <button type="button" id="history-clear"><i class="fa-solid fa-trash-can"></i></button>
+            <span id="no-history">No history</span>
+            <div id="history-list">
+            </div>
+        </div>
+
+        <div id="search">
+            <input type="search" placeholder="Elementni qidirish..." id="search-input">
+            <button type="button" id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+    </section>
+    <header class="content_menu">
+        <section class="calcmr display" id="calcMR">
+            <div class="input" id="input">
+                <div class="formula" id="formula">
+                    <div class="cursor"></div>
+                </div>
+                <div class="result">
+                    <button type="button" id="copy">
+                        <i class="fa-solid fa-clone"></i>
+                    </button>
+                    <div id="result">
+
+                    </div>
+                </div>
+            </div>
+            <div class="buttons" id="buttons">
+                
+            </div>
+            <div class="calculator-btn" id="calculator-btn">
+                <button type="button" id="clear" class="clear">C</button>
+                <button type="button" class="calculator_btn" id="kop">*</button>
+                <button type="button" id="backspace" class="clear"><i class="fa-solid fa-delete-left"></i></button>
+
+                <script>
+                    document.getElementById('kop').addEventListener('click', () => {
+                        misol.push(`*`)
+                        generateInput(misol)
+                    })
+                    document.getElementById('backspace').addEventListener('click', () => {
+                        misol.pop()
+                        generateInput(misol)
+                    })
+                    function generateInput(misol) {
+                        inputArea.textContent = ""
+                        for (const i of misol) {
+                            inputArea.textContent += i
+                        }
+                        inputArea.innerHTML += `<div class="cursor"></div>`
+                    }
+                    let misol = []
+                    const array = [
+                        "7", "8", "9",
+                        "4", "5", "6",
+                        "1", "2", "3",
+                        "(", ")",
+                    ]
+                    const inputArea = document.getElementById('formula')
+                    array.forEach(element => {
+                        const button = document.createElement('button');
+                        button.textContent = element;
+                        button.classList.add('calculator_btn')
+                        document.getElementById('calculator-btn').appendChild(button);
+                        button.addEventListener('click', () => {
+                            misol.push(`${element}`)
+                            generateInput(misol)
+                        })
+                        document.getElementById('clear').addEventListener('click', () => {
+                            inputArea.textContent = ``;
+                            resultArea.innerHTML = `0`;
+                            misol = []
+                        })
+                    });
+                </script>
+                <button type="button" id="calculate" class="calculator_btn">=</button>
+            </div>
+        </section>
+
+        <section class="modda-table display" id="moddalar_jadvali">
+        </section>
+
+        <section class="proporsia display" id="proporsia">
+            <div>
+                <input type="number" class="proporsia_value">
+                <div class="line"></div>
+                <input type="number" class="proporsia_value">
+            </div>
+            <div>
+                <input type="number" class="proporsia_value">
+                <div class="line"></div>
+                <h1><i class="fa-solid fa-x"></i></h1>
+            </div>
+            <button id="calculate-proporsia" class="cproporsia">Hisoblash</button>
+
+            <div id="proporsia-result" class="proporsia_result">
+                <h1>Javob:  <span id="javob">--</span></h1>
+            </div>
+
+            <script>
+                const firstInput = document.getElementsByClassName('proporsia_value')
+                const hisoblashBtn = document.getElementById('calculate-proporsia')
+
+                hisoblashBtn.addEventListener('click', () => {
+                    for (input of firstInput) {
+                        if (!input.value) {
+                            alert('qiymatlarni kiritishingiz shart')
+                            return
+                        }
+                    }
+                    try {
+                        javob = (firstInput[1].value * firstInput[2].value) / firstInput[0].value
+                        if (!(javob in [Infinity, NaN, undefined, null])) {
+                            document.getElementById('javob').innerHTML = `X = ${firstInput[1].value} * ${firstInput[2].value} / ${firstInput[0].value} = <span id="fourth-res">${javob}</span>`
+                        }
+                        else {
+                            document.getElementById('javob').innerHTML = `<span id="fourth-res">Xaolik, mumkin bo'lmagan qiymatlarni kiritdingiz!</span>`
+                        }
+                    } catch {
+                        document.getElementById('javob').innerHTML = `<span id="fourth-res">XATOLIK</span>`
+                    }
+                })
+            </script>
+        </section>
+
+        <section class="info display" id="info">
+            <h1><i class="fa-solid fa-flask"></i>PROKimyogar</h1>
+            <div>
+                <span>
+                    Molekulyar massa    >
+                </span>
+                <span class="content">
+                    Kalkulyator bo'limiga kirib element formulasini yozing va qulay hisoblang!<br>
+                    <br>
+                    Belgilar: *(Yulduzcha) bu ko'paytirishni anglatadi, Masalan suv formulasida H2O ni yozish uchun H*2O kabi yoziladi bu yerda *2 shu elementdan ikkita borligini anglatadi.<br><br>
+                    () - (Kavslar) bu guruhlab ishlash imkonini beradi masalan (HO)*2 bu H va O guruhidan ikkita ekanini anglatadi va quyidagicha hisoblanadi: (1+16)*2.
+                </span>
+            </div>
+            <div>
+                <span>
+                    Proporsiya  >
+                </span>
+                <span class="content">
+                    Siz proporsia bo'limiga kirib ma'lum qiymatlar orqali nomalum qiymatni oson topishingiz  mumkin. <br><br>
+                    Masalan: 9gr H*2O necha mol? H*2O ni kalkulyatorda hisoblab olamiz va: 18 --- 1 | 9 --- X kabi kiritamiz va hisoblash tugmasini bosishimiz bilan yechilish uslubi bilan javobni olasiz!
+                </span>
+            </div>
+            <div>
+                <span>
+                Elementlar jadvali  >
+                </span>
+                <span class="content">
+                    Siz qog'oz olib yurmasdan shu bo'limdan har bir element a'lumotini topishingiz mumkin. Sizga tushunarsiz ko'rinishi mumkin bo'lgan qismi shu yerda, masalan H elementida: 1.008 | 1 bu aniq massa 1.008 ga va yaxlitlaganda 1 ga tengligi ko'rsatilgan, hisblaganda qaysini olishini sozlamalar orqali o'zgartirishingiz mumkin.
+                </span>
+            </div>
+            <div>
+                <span>
+                    Vazifalar paneli
+                </span>
+                <span class="content">
+                    Yuqoridagi vazifalar paneli ustiga sichqonchani olib borish yoki ustiga bosish orqali chiqarishingiz mumkin.<br><br>
+                    Siz ushbu panel orqali shu bo'limga kerakli funksiyadan foydalanishingiz mumkin. Masalan siz kalkulyator bo'limida bo'lsangiz sizga hisoblar tarixi ko'rsatiladi, jadval panelida esa elementlarni qidirishingiz mumkin.
+                </span>
+            </div>
+            <div>
+                <span>
+                    Sozlamalar
+                </span>
+                <span class="content">
+                    Siz ushbu bo'lim orqali dastur sozlamalarini o'zgartirishingiz mumkin. Masalan hisoblash usulini aniq yoki yaxlitlashni tanlashingiz mumkin. Shuningdek dasturchi haqida ma'lumotlarni ham shu yerda topishingiz mumkin.
+                </span>
+            </div>
+            <div>
+                <span>
+                    Pastdagi menyu paneli
+                </span>
+                <span class="content">
+                    Siz ushbu panel orqali dastur bo'limlariga o'tishingiz mumkin. Masalan siz kalkulyator bo'limida bo'lsangiz sizga hisoblar tarixi ko'rsatiladi, jadval panelida esa elementlarni qidirishingiz mumkin.
+                </span>
+            </div>
+            <h4><i class="fa-solid fa-copyright"></i>Barcha huquqlar himoyalangan!</h4>
+        </section>
+
+        <section class="settings display" id="settings">
+            <div>
+                <span>
+                    Hisoblash usuli
+                </span>
+                <select id="aniqlik">
+                    <option value="aniq">Aniq</option>
+                    <option value="yaxlit" selected>Yaxlitlangan</option>
+                </select>
+            </div>
+            <div>
+                <span>
+                    Versiya
+                </span>
+                <span>
+                    1.0.1
+                </span>
+            </div>
+            <div>
+                <span>
+                    Vibratsiya
+                </span>
+                <span>
+                    <select id="vibratsiya">
+                        <option value="yoq">Yo'q</option>
+                        <option value="bor" selected>Bor</option>
+                    </select>
+                </span>
+            </div>
+            <div class="developer">
+                <span>
+                    Dasturchi
+                </span>
+                <span>
+                    <span class="name">Nazarbek</span>
+                    <span>
+                        <span>Email: </span><span>professional.it.2025@gmail.com</span>
+                    </span>
+                </span>
+            </div>
+        </section>
+    </header>
+    <footer class="foot_navbar">
+        <label class="menues">
+            <input type="radio" name="menu" value="calcMR" onChange="showDisplay(this.value, 'grid', 'onCalculator')" checked>
+            <div class="wrap">
+                <div class="icon"><i class="fa-solid fa-calculator"></i></div>
+                <div class="text">Calculator</div>
+            </div>
+        </label>
+        <label class="menues">
+            <input type="radio" name="menu" value="moddalar_jadvali" onChange="showDisplay(this.value, 'grid', 'onTable')">
+            <div class="wrap">
+                <div class="icon"><i class="fa-solid fa-table"></i></div>
+                <div class="text">Jadval</div>
+            </div>
+        </label>
+        <label class="menues">
+            <input type="radio" name="menu" value="proporsia" onChange="showDisplay(this.value, 'flex', 'onProporsia')">
+            <div class="wrap">
+                <div class="icon"><i class="fa-solid fa-x"></i></div>
+                <div class="text">Proporsia</div>
+            </div>
+        </label>
+        <label class="menues">
+            <input type="radio" name="menu" value="info" onChange="showDisplay(this.value, 'block', 'onInfo')">
+            <div class="wrap">
+                <div class="icon"><i class="fa-solid fa-circle-info"></i></div>
+                <div class="text">Info</div>
+            </div>
+        </label>
+        <label class="menues">
+            <input type="radio" name="menu" value="settings" onChange="showDisplay(this.value, 'flex', 'onSettings')">
+            <div class="wrap">
+                <div class="icon"><i class="fa-solid fa-gear fa-spin fa-spin-reverse"></i></div>
+                <div class="text">Settings</div>
+            </div>
+        </label>
+    </footer>
+    <section class="blur-animation" id="blur-animation"></section>
+    <script>
+        let theme = localStorage.getItem('theme') == 'light' ? 'light' : 'dark'
+        const themeIcon = document.getElementById('theme-icon')
+        if (theme == 'light') {
+            document.body.classList.add('light-mode')
+            themeIcon.innerHTML = `<i class="fa-solid fa-moon"></i>`
+        }
+
+        const aniqlik = localStorage.getItem('aniqlik') || 'yaxlit'
+        const select = document.getElementById('aniqlik')
+        select.value = aniqlik
+        select.addEventListener('change', () => {
+            localStorage.setItem('aniqlik', select.value)
+        })
+
+        let histories = JSON.parse(localStorage.getItem('history') || '{}')
+        const historyList = document.getElementById('history-list')
+        const clearHistory = document.getElementById('history-clear')
+        const historyBox = document.getElementById('history')
+        const noHistory = document.getElementById('no-history')
+        function updateHistory() {
+            historyList.innerHTML = ''
+            if ((Object.keys(histories).length === 0) || (!noHistory)) {
+                noHistory.style.display = 'block'
+            } else {
+                noHistory.style.display = 'none'
+                for (const history in histories) {
+                    historyList.innerHTML += `
+                        <div>
+                            <span>${history}</span>
+                            <span>${histories[history]}</span>
+                        </div>
+                    `
+                }
+            }
+        }
+        const vibratsiyaSelect = document.getElementById('vibratsiya')
+        vibratsiyaSelect.value = localStorage.getItem('vibratsiya') || 'bor'
+        vibratsiyaSelect.addEventListener('change', () => {
+            localStorage.setItem('vibratsiya', vibratsiyaSelect.value)
+        })
+        updateHistory()
+        clearHistory.addEventListener('click', () => {
+            localStorage.removeItem('history')
+            histories = {}
+            updateHistory()
+        })
+    </script>
+</body>
+</html>
