@@ -114,15 +114,17 @@ function showDisplay(id, displayStyle = 'flex', activeTool = null) {
 
 const footer = document.querySelector('footer')
 const label = document.getElementsByClassName('menues')
+let timeout2;
 footer.addEventListener('mouseenter', () => {
-    setTimeout(()=>{
+    timeout2 = setTimeout(()=>{
         for (const l of label) {
             l.style.display = 'flex'
         }
-        clearTimeout(this)
+        clearTimeout(timeout2)
     }, 100)
 })
 footer.addEventListener('mouseleave', () => {
+    clearTimeout(timeout2)
     for (const l of label) {
         l.style.display = 'none'
     }
@@ -141,23 +143,36 @@ const searchInput = document.getElementById('search-input')
 const searchBtn = document.getElementById('search-btn')
 
 searchBtn.addEventListener('click', () => {
-    const searchValue = searchInput.value.trim()
+    const searchValue = searchInput.value.trim().toLowerCase();
+
     if (!searchValue) {
-        alert('Iltimos, qidirish maydonini to\'ldiring.')
+        alert('Iltimos, qidirish maydonini to\'ldiring.');
+        return;
     }
-    if (searchValue in atomicMasses) {
-        let i = searchValue
-        modalarJadvali.innerHTML = ''
-            const modda = document.createElement('div')
-            modda.classList.add('modda')
-            modda.classList.add('jadvalChild')
-            const element = atomicMasses[i]
-            modda.classList.add(element[2])
-            const electrons = element[5].join(' ')
+
+    modalarJadvali.innerHTML = '';
+    let isFound = false;
+
+    for (const i in atomicMasses) {
+        const element = atomicMasses[i];
+        
+        // Element belgisi (H, He), nomi (Vodorod, Geliy) yoki tartib raqami (1, 2) bo'yicha qidirish
+        const symbolMatch = i.toLowerCase() === searchValue;
+        const nameMatch = element[3] && element[3].toString().toLowerCase().includes(searchValue);
+        const numberMatch = element[4] && element[4].toString() === searchValue;
+
+        if (symbolMatch || nameMatch || numberMatch) {
+            isFound = true;
+            const modda = document.createElement('div');
+            modda.classList.add('modda', 'jadvalChild');
+            modda.classList.add(element[2]);
+            modda.style.maxHeight = 'min-content';
+            const electrons = Array.isArray(element[5]) ? element[5].join(' ') : element[5];
+
             modda.innerHTML = `
                 <span class="wrap-nums">
                     <h5>${element[4]}</h5>
-                    <h5 class="${element[6]? 'rounded':''}">${element[6] || ''}</h5>
+                    <h5 class="${element[6] ? 'rounded' : ''}">${element[6] || ''}</h5>
                 </span>
 
                 <span class="wrap-contents">
@@ -166,17 +181,21 @@ searchBtn.addEventListener('click', () => {
                         <h4>${element[3]}</h4>
                         <h5>${element[0]} | ${element[1]}</h5>
                     </span>
-                </span
+                </span>
 
                 <span class="electrons">
                     ${electrons}
                 </span>
-            `
-            modalarJadvali.appendChild(modda)
-    } else {
-        alert('Element topilmadi!')
+            `;
+            modalarJadvali.appendChild(modda);
+        }
     }
-})
+
+    if (!isFound) {
+        alert('Element topilmadi!');
+        generateTable(); // Topilmagan holatda butun jadvalni qayta tiklaydi
+    }
+});
 
 searchInput.addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
@@ -243,21 +262,47 @@ for (const button of buttons) {
         }
     })
 }
-for (const modda of moddalar) {
-    modda.addEventListener('click', () => {
-        if (localStorage.getItem('vibratsiya') === 'bor') {
-            navigator.vibrate(50)
+
+document.addEventListener('click', (event) => {
+    const isVibratable = event.target.closest('button, .modda, .calculator_btn, .menues');
+    
+    if (isVibratable) {
+        if (localStorage.getItem('vibratsiya') === 'bor' && 'vibrate' in navigator) {
+            try {
+                navigator.vibrate(50);
+            } catch (e) {
+                console.log("Vibratsiya xatosi:", e);
+            }
         }
-    })
-}
+    }
+});
+let timeout;
+const searchArea = document.getElementById('search')
 
 tools.addEventListener('mouseenter', () => {
-    setTimeout(()=>{
+    timeout = setTimeout(()=>{
+        if (tools.classList.contains('onCalculator')) {
+            historyBox.style.display = 'flex'
+        }
+        if (tools.classList.contains('onTable')) {
+            searchArea.style.display = 'flex'
+        }
+        themeToggle.style.display = 'block'
+        themeIcon.style.display = 'block'
         installBtn.style.display = 'flex'
         clearTimeout(this)
-    }, 200)
+    }, 150)
 })
 
 tools.addEventListener('mouseleave', () => {
+    if (tools.classList.contains('onCalculator')) {
+        historyBox.style.display = 'none'
+    }
+    if (tools.classList.contains('onTable')) {
+        searchArea.style.display = 'none'
+    }
+    themeToggle.style.display = 'none'
+    themeIcon.style.display = 'none'
     installBtn.style.display = 'none'
+    clearTimeout(timeout)
 })
