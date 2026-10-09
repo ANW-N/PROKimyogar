@@ -226,6 +226,9 @@
                 <button type="button" id="backspace" class="clear"><i class="fa-solid fa-delete-left"></i></button>
 
                 <script>
+                    let timer;
+                    let interval;
+                    const btn = document.getElementById('backspace')
                     document.getElementById('kop').addEventListener('click', () => {
                         misol.push(`*`)
                         generateInput(misol)
@@ -234,6 +237,25 @@
                         misol.pop()
                         generateInput(misol)
                     })
+                    function btnPointerDown() {
+                        timer = setTimeout(() => {
+                            interval = setInterval(() => {
+                                misol.pop()
+                                generateInput(misol)
+                            }, 80);
+                        }, 150);
+                    }
+                    function btnPointerUp() {
+                        clearTimeout(timer);
+                        clearInterval(interval)
+                    }
+                    btn.addEventListener("pointerdown", btnPointerDown);
+
+                    btn.addEventListener("pointerup", btnPointerUp);
+
+                    btn.addEventListener("pointerleave", btnPointerUp);
+
+                    btn.addEventListener("pointercancel", btnPointerUp);
                     function generateInput(misol) {
                         inputArea.textContent = ""
                         for (const i of misol) {
@@ -347,7 +369,7 @@
             </div>
             <div>
                 <span>
-                    Vazifalar paneli
+                    Vazifalar paneli    >
                 </span>
                 <span class="content">
                     Yuqoridagi vazifalar paneli ustiga sichqonchani olib borish yoki ustiga bosish orqali chiqarishingiz mumkin.<br><br>
@@ -356,15 +378,15 @@
             </div>
             <div>
                 <span>
-                    Elementlarni qidirish
+                    Elementlarni qidirish    >
                 </span>
-                <span>
+                <span class="content">
                     Elementni qidirish joyiga elementning istalgan hossasini yozishingiz mumkin, masalan: nomi, indeksi, massasi va hokazo.
                 </span>
             </div>
             <div>
                 <span>
-                    Sozlamalar
+                    Sozlamalar    >
                 </span>
                 <span class="content">
                     Siz ushbu bo'lim orqali dastur sozlamalarini o'zgartirishingiz mumkin. Masalan hisoblash usulini aniq yoki yaxlitlashni tanlashingiz mumkin. Shuningdek dasturchi haqida ma'lumotlarni ham shu yerda topishingiz mumkin.
@@ -372,7 +394,7 @@
             </div>
             <div>
                 <span>
-                    Pastdagi menyu paneli
+                    Pastdagi menyu paneli    >
                 </span>
                 <span class="content">
                     Siz ushbu panel orqali dastur bo'limlariga o'tishingiz mumkin. Masalan siz kalkulyator bo'limida bo'lsangiz sizga hisoblar tarixi ko'rsatiladi, jadval panelida esa elementlarni qidirishingiz mumkin.
