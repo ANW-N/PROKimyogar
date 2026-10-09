@@ -97,7 +97,7 @@ header.content_menu {
     font-family: sans-serif;
     font-weight: 700;
     font-size: 1.2rem;
-    box-shadow: inset 0 5px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 5px 20px rgba(0, 0, 0, 0.37);
 }
 
 #input, #result {
@@ -294,7 +294,7 @@ footer {
     backdrop-filter: blur(20px);
     z-index: 10 !important;
     background: var(--footer-background);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 footer label {
@@ -381,19 +381,19 @@ select {
 
 .menues .icon {
     font-size: 1.5rem;
-    color: var(--calculators-text);
+    color: rgba(18, 25, 43, 0.92);;
 }
 
 .menues .text {
     font-size: 0.8rem;
     display: none;
-    color: var(--calculators-text);
+    color: rgba(18, 25, 43, 0.92);;
 }
 
 input[type="radio"]:checked + div {
-    background: var(--footer-background);
+    background: var(--calculators-text);
     backdrop-filter: blur(20px);
-    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 0 10px rgba(2, 2, 2, 0.2);
     border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -647,14 +647,14 @@ input[type="radio"]:checked + div .text {
 }
 
 .tools {
-    background: #000;
+    background: #030303;
     width: min(90%, 500px);
     height: 3%;
     position: fixed;
     top: 1%;
     border-radius: 20px;
     transition: 0.3s ease-out;
-    border: 2px solid rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.2);
     z-index: 11;
 }
 
@@ -682,7 +682,7 @@ input[type="radio"]:checked + div .text {
 .tools:hover {
     padding-top: 0;
     height: 10%;
-    box-shadow: inset 0 0 20px 5px #3b3636c9;
+    box-shadow: inset 0 0 20px 5px var(--calculators-text);
 }
 
 .tools:hover #theme-toggle {
