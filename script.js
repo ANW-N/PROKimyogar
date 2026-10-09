@@ -267,7 +267,7 @@ document.addEventListener('click', (event) => {
     const isVibratable = event.target.closest('button, .modda, .calculator_btn, .menues');
     
     if (isVibratable) {
-        if (localStorage.getItem('vibratsiya') === 'bor' && 'vibrate' in navigator) {
+        if (vibratsiyaSelect.value === 'bor' && 'vibrate' in navigator) {
             try {
                 navigator.vibrate(50);
             } catch (e) {
@@ -305,4 +305,34 @@ tools.addEventListener('mouseleave', () => {
     themeIcon.style.display = 'none'
     installBtn.style.display = 'none'
     clearTimeout(timeout)
+})
+
+document.addEventListener('keydown', (key) => {
+    if ((key.key === '*' || ['1', '2','3','4','5','6','7','8','9'].includes(key.key)) && tools.classList.contains('onCalculator')) {
+        misol.push(key.key)
+        generateInput(misol)
+    }
+
+    if (key.key === 'Enter' && tools.classList.contains('onCalculator')) {
+        calculate.click()
+    }
+
+    if (key.key === 'Backspace' && tools.classList.contains('onCalculator')) {
+        misol.pop()
+        generateInput(misol)
+    }
+})
+document.addEventListener('keyup', (event) => {
+    if (event.key === 'Backspace') {
+        clearInterval(interval)
+    }
+});
+
+document.addEventListener('keypress', (event) => {
+    if (event.key === 'Backspace') {
+        interval = setInterval(() => {
+            misol.pop()
+            generateInput(misol)
+        }, 80);
+    }
 })
