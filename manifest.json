@@ -1,7 +1,10 @@
+
 {
-    "name": "PROKimyogar",
+    "id": "./",
+    "name": "PROKimyogar — Kimyo yordamchisi",
     "short_name": "PROKimyogar",
-    "description": "Kimyo uchun zamonaviy yordamchi ilova",
+    "description": "Molekulyar massa kalkulyatori, kimyoviy elementlar jadvali va proporsiya vositalari.",
+    "lang": "uz",
     "start_url": "./",
     "scope": "./",
     "display": "fullscreen",
@@ -13,7 +16,13 @@
             "src": "./icon/logo.png",
             "sizes": "512x512",
             "type": "image/png",
-            "purpose": "any maskable"
+            "purpose": "any"
+        },
+        {
+            "src": "./icon/logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
         }
     ]
 }
