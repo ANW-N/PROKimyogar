@@ -1,34 +1,110 @@
 <!DOCTYPE html>
 <html lang="uz">
+
 <head>
-    <title>PROKimyogar — Kimyo kalkulyatori va elementlar jadvali</title>
-    <meta name="description" content="PROKimyogar — kimyoviy formulalarning molekulyar massasini hisoblash, kimyoviy elementlar jadvalidan foydalanish va proporsiya masalalarini yechish uchun qulay vosita.">
-    <meta name="robots" content="index, follow">
-    <meta name="language" content="Uzbek">
+    <!-- Basic metadata -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="manifest.json">
-    <meta name="google-site-verification" content="m2nB4PWR1d0dL5YQ-yQQLo_C-IWRcApdT5VHe8-2ARA" />
+    <meta name="language" content="uz">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+
+    <!-- SEO -->
+    <title>PROKimyogar — Kimyo kalkulyatori va elementlar jadvali</title>
+    <meta
+        name="description"
+        content="PROKimyogar yordamida molekulyar massani hisoblang, kimyoviy elementlar jadvalidan foydalaning va proporsiya masalalarini yeching."
+    >
+    <link
+        rel="canonical"
+        href="https://anw-n.github.io/PROKimyogar/"
+    >
+
+    <!-- Google Search Console verification -->
+    <meta
+        name="google-site-verification"
+        content="m2nB4PWR1d0dL5YQ-yQQLo_C-IWRcApdT5VHe8-2ARA"
+    >
+
+    <!-- Browser appearance -->
     <meta name="theme-color" content="#0b1220">
+    <meta name="color-scheme" content="dark light">
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="./icon/logo.png">
+    <link rel="apple-touch-icon" href="./icon/logo.png">
+
+    <!-- PWA -->
+    <link rel="manifest" href="./manifest.json">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="apple-touch-icon" href="icon/logo.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-    <link rel="icon" type="image/png" href="icon/logo.png">
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="black-translucent"
+    >
+    <meta name="apple-mobile-web-app-title" content="PROKimyogar">
 
-    <!-- Google tag (gtag.js) -->
+    <!-- Open Graph: social sharing previews -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PROKimyogar">
+    <meta
+        property="og:title"
+        content="PROKimyogar — Kimyo kalkulyatori"
+    >
+    <meta
+        property="og:description"
+        content="Molekulyar massa kalkulyatori, kimyoviy elementlar jadvali va proporsiya vositalari."
+    >
+    <meta
+        property="og:url"
+        content="https://anw-n.github.io/PROKimyogar/"
+    >
+    <meta
+        property="og:image"
+        content="https://anw-n.github.io/PROKimyogar/icon/logo.png"
+    >
+    <meta property="og:image:alt" content="PROKimyogar logotipi">
+    <meta property="og:locale" content="uz_UZ">
+
+    <!-- Twitter / X sharing preview -->
+    <meta name="twitter:card" content="summary">
+    <meta
+        name="twitter:title"
+        content="PROKimyogar — Kimyo kalkulyatori"
+    >
+    <meta
+        name="twitter:description"
+        content="Kimyoviy formulalar, molekulyar massa va elementlar jadvali uchun qulay vosita."
+    >
+    <meta
+        name="twitter:image"
+        content="https://anw-n.github.io/PROKimyogar/icon/logo.png"
+    >
+
+    <!-- Styles -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+    >
+    <link rel="stylesheet" href="./style.css">
+
+    <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PN2B3WJX3R"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
 
+        function gtag() {
+            window.dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
         gtag('config', 'G-PN2B3WJX3R');
     </script>
+
+    <!-- Application JavaScript -->
+    <script src="./script.js" defer></script>
 </head>
+
 <body>
     <script>
         const atomicMasses = {
