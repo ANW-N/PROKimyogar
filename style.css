@@ -886,15 +886,38 @@ button {
     padding-right: 10px;
 }
 
+@media only screen and (max-width: 900px) {
+    .calcmr, header {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+    footer:hover, footer:active {
+        height: 10%;
+        width: 95%;
+        padding: 0 0;
+        overflow-x: auto;
+    }
+    .buttons:hover {
+        scrollbar-width: thin;
+    }
+
+    .proporsia {
+        padding: 5px;
+    }
+
+    .buttons:hover::-webkit-scrollbar-thumb, .buttons:hover::-webkit-scrollbar, .buttons:hover::-webkit-scrollbar-track {
+        display: block !important;
+    }
+}
+
 @media only screen and (max-height: 495px) {
     .input {
         margin-top: 3%;
         height: 60px;
         font-size: 1rem;
     }
-}
-
-@media only screen and (max-height: 495px) {
     .buttons {
         margin: 0;
         padding: 0;
@@ -945,32 +968,6 @@ button {
         scrollbar-width: none;
     }
 }
-@media only screen and (max-width: 900px) {
-    .calcmr, header {
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-        overflow-x: hidden;
-    }
-    footer:hover, footer:active {
-        height: 10%;
-        width: 95%;
-        padding: 0 0;
-        overflow-x: auto;
-    }
-    .buttons:hover {
-        scrollbar-width: thin;
-    }
-
-    .proporsia {
-        padding: 5px;
-    }
-
-    .buttons:hover::-webkit-scrollbar-thumb, .buttons:hover::-webkit-scrollbar, .buttons:hover::-webkit-scrollbar-track {
-        display: block !important;
-    }
-}
-
 
 .pwa-update-banner {
     position: fixed;
