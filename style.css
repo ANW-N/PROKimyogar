@@ -3,7 +3,8 @@
     --background-color: rgba(18, 25, 43, 0.92);
     --card-color: rgb(0, 0, 0);
 
-    --calculators-text: rgb(0, 128, 0);
+    --calculators-text: #0096b4;
+    --text2: #0096b4;
     --input-color: #fff7f7;
     
     --accent-color: #38bdf8;
@@ -33,6 +34,7 @@ body.light-mode {
     --footer-background: rgba(0, 0, 0, 0.3);
     --footer-menu-background: rgba(255, 255, 255, 0.3);
     --calculators-text: #ffc400;
+    --text2: #ffc400;
     --text-color: #000;
     --input-color: #1d1d1f;
     --select-font: #2e2e2e;
@@ -88,6 +90,7 @@ header.content_menu {
     color: var(--calculators-text);
     height: 80px;
     box-sizing: border-box;
+    overflow: hidden;
     border: 1px solid #ccc;
     text-align: right;
     border-radius: 15px;
@@ -101,6 +104,7 @@ header.content_menu {
 }
 
 #input, #result {
+    width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
@@ -119,14 +123,14 @@ header.content_menu {
 }
 .calculator-btn {
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(4, auto);
     gap: 5px;
     margin-top: 10px;
 }
 
 .calculator_btn, .clear {
     background: #1d1d1f;
-    color: var(--calculators-text);
+    color: var(--text2);
     border-radius: 10px;
     transition: background 0.3s, box-shadow 0.5s;
     margin: 2px 5px;
@@ -149,7 +153,7 @@ header.content_menu {
 .calculator_btn:hover {
     transform: translateY(-1px);
     box-shadow: 0 0 20px 0 var(--calculators-text);
-    background: var(--calculators-text);
+    background: var(--text2);
     color: var(--card-color);
 }
 
@@ -409,16 +413,16 @@ input[type="radio"]:checked + div .text {
     padding: 10px;
     gap: 10px;
 }
-.modda-table::-webkit-scrollbar {
+*::-webkit-scrollbar {
     width: 4px;
 }
 
-.modda-table::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
     background: rgba(128, 128, 128, 0.08);
     border-radius: 999px;
 }
 
-.modda-table::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
     background: linear-gradient(
         90deg,
         var(--accent-strong),
@@ -551,12 +555,55 @@ input[type="radio"]:checked + div .text {
 
 .info {
     width: 100%;
-    color: var(--input-color);
+    color: var(--accent-color);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: 900;
     letter-spacing: 1px;
     padding: 5%;
-    padding-bottom: 10%;
+    padding-bottom: 30px;
+}
+
+.info div {
+    color: var(--input-color);
+}
+
+.info div:hover {
+    box-shadow: 0 0 20px var(--accent-strong);
+    transform: translateY(-1px);
+}
+.info h1 {
+    font-size: 2rem;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-bottom: 10px;
+}
+
+.info h2 {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.info h3 {
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.fa-flask {
+    background: linear-gradient(135deg, #0284c7 0%, #10b981 50%, #22c55e 100%);
+    
+    /* Gradientni matn shakliga moslab kesish (clip qilish) */
+    -webkit-background-clip: text;
+    background-clip: text;
+    
+    /* Asosiy matn rangini shaffof qilish, toki orqadagi gradient ko'rinsin */
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    
+    /* Qo'shimcha chiroyli ko'rinish uchun */
+    font-weight: 800;
 }
 
 .settings {
@@ -647,14 +694,14 @@ input[type="radio"]:checked + div .text {
 }
 
 .tools {
-    background: #030303;
+    background: #000;
     width: min(90%, 500px);
     height: 3%;
     position: fixed;
     top: 1%;
     border-radius: 20px;
     transition: 0.3s ease-out;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(0, 0, 0, 0.2);
     z-index: 11;
 }
 
@@ -739,6 +786,21 @@ button {
     align-items: center;
     gap: 10px;
     width: 100%;
+}
+
+#history-list div span {
+    color: #fff;
+    font-weight: 500;
+    width: 50%;
+    overflow-x: auto;
+}
+
+.history-value {
+    color: var(--accent-color) !important;
+    font-weight: 900;
+    text-align: right;
+    width: 50%;
+    overflow-x: auto;
 }
 
 .tools.onCalculator:hover #history {
@@ -901,5 +963,140 @@ button {
 
     .buttons:hover::-webkit-scrollbar-thumb, .buttons:hover::-webkit-scrollbar, .buttons:hover::-webkit-scrollbar-track {
         display: block !important;
+    }
+}
+
+
+.pwa-update-banner {
+    position: fixed;
+    z-index: 99999;
+    left: 50%;
+    bottom: 20px;
+    width: min(560px, calc(100% - 28px));
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+
+    color: #f8fafc;
+    background: rgba(15, 23, 42, 0.97);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 18px;
+    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.3);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate(-50%, 24px);
+
+    transition:
+        opacity 240ms ease,
+        transform 240ms ease,
+        visibility 240ms ease;
+}
+
+.pwa-update-banner.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+}
+
+.pwa-update-banner__content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.pwa-update-banner__icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+    color: #c4b5fd;
+    background: rgba(99, 102, 241, 0.18);
+    font-size: 18px;
+}
+
+.pwa-update-banner__text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.pwa-update-banner__text strong {
+    font-size: 14px;
+}
+
+.pwa-update-banner__text span {
+    color: #cbd5e1;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.pwa-update-banner__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.pwa-update-banner__actions button {
+    padding: 10px 13px;
+    border: 0;
+    border-radius: 10px;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    transition:
+        opacity 180ms ease,
+        transform 180ms ease;
+}
+
+.pwa-update-banner__actions button:hover {
+    transform: translateY(-1px);
+}
+
+.pwa-update-banner__actions button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+    transform: none;
+}
+
+.pwa-update-banner__later {
+    color: #e2e8f0;
+    background: rgba(148, 163, 184, 0.15);
+}
+
+.pwa-update-banner__install {
+    color: #fff;
+    background: #6366f1;
+}
+
+@media (max-width: 520px) {
+    .pwa-update-banner {
+        bottom: 12px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+        padding: 14px;
+    }
+
+    .pwa-update-banner__actions {
+        justify-content: flex-end;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pwa-update-banner,
+    .pwa-update-banner__actions button {
+        transition: none;
     }
 }
