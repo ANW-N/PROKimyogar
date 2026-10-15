@@ -912,24 +912,6 @@ button {
     }
 }
 
-@media only screen and (max-height: 495px) {
-    .input {
-        margin-top: 3%;
-        height: 60px;
-        font-size: 1rem;
-    }
-    .buttons {
-        margin: 0;
-        padding: 0;
-    }
-
-    .calculator-btn {
-        margin: 0;
-        gap: 0.2px;
-        padding: 0;
-    }
-}
-
 @media only screen and (max-height: 650px) {
     .buttons {
         grid-template-rows: repeat(5, auto);
@@ -968,6 +950,25 @@ button {
         scrollbar-width: none;
     }
 }
+
+@media only screen and (max-height: 495px) {
+    .input {
+        margin-top: 3%;
+        height: 60px;
+        font-size: 1rem;
+    }
+    .buttons {
+        margin: 0;
+        padding: 0;
+    }
+
+    .calculator-btn {
+        margin: 0;
+        gap: 0.2px;
+        padding: 0;
+    }
+}
+
 
 .pwa-update-banner {
     position: fixed;
