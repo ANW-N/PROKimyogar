@@ -459,7 +459,7 @@ tools.addEventListener('mouseleave', () => {
 })
 
 document.addEventListener('keydown', (key) => {
-    if ((key.key === '*' || ['1', '2','3','4','5','6','7','8','9'].includes(key.key)) && tools.classList.contains('onCalculator')) {
+    if (['(',')','1', '2','3','4','5','6','7','8','9','*','+','-','.','/', '0'].includes(key.key) && tools.classList.contains('onCalculator')) {
         misol.push(key.key)
         generateInput(misol)
     }
