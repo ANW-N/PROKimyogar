@@ -693,14 +693,15 @@ input[type="radio"]:checked + div .text {
 }
 
 .tools {
-    background: #000;
+    background: rgba(30, 41, 59, 0.96);
     width: min(90%, 500px);
     height: 3%;
     position: fixed;
     top: 1%;
     border-radius: 20px;
     transition: 0.3s ease-out;
-    border: 2px solid rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(148, 163, 184, 0.4);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
     z-index: 11;
 }
 
