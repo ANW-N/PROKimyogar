@@ -1,5 +1,5 @@
 
-const APP_VERSION = "1.1.1";
+const APP_VERSION = "1.1.0";
 const CACHE_NAME = `prokimyogar-${APP_VERSION}`;
 
 const ASSETS_TO_CACHE = [
