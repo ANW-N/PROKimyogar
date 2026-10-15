@@ -297,20 +297,24 @@
                     </div>
                 </div>
             </div>
-            <div class="buttons" id="buttons">
-                
+            <div class="buttons" id="buttons">       
             </div>
             <div class="calculator-btn" id="calculator-btn">
                 <button type="button" id="clear" class="clear">C</button>
-                <button type="button" class="calculator_btn" id="kop">*</button>
+                <button type="button" class="calculator_btn qavs">(</button>
+                <button type="button" class="calculator_btn qavs">)</button>
                 <button type="button" id="backspace" class="clear"><i class="fa-solid fa-delete-left"></i></button>
 
                 <script>
                     let timer;
                     let interval;
                     const btn = document.getElementById('backspace')
-                    document.getElementById('kop').addEventListener('click', () => {
-                        misol.push(`*`)
+                    document.getElementsByClassName('qavs')[0].addEventListener('click', () => {
+                        misol.push(`(`)
+                        generateInput(misol)
+                    })
+                    document.getElementsByClassName('qavs')[1].addEventListener('click', () => {
+                        misol.push(`)`)
                         generateInput(misol)
                     })
                     document.getElementById('backspace').addEventListener('click', () => {
@@ -345,15 +349,15 @@
                     }
                     let misol = []
                     const array = [
-                        "7", "8", "9",
-                        "4", "5", "6",
-                        "1", "2", "3",
-                        "(", ")",
+                        "7", "8", "9", "+",
+                        "4", "5", "6", "-",
+                        "1", "2", "3", "*",
+                        ".", "0", "/",
                     ]
                     const inputArea = document.getElementById('formula')
                     array.forEach(element => {
                         const button = document.createElement('button');
-                        button.textContent = element;
+                        button.innerHTML = element;
                         button.classList.add('calculator_btn')
                         document.getElementById('calculator-btn').appendChild(button);
                         button.addEventListener('click', () => {
@@ -404,8 +408,8 @@
                     }
                     try {
                         javob = (firstInput[1].value * firstInput[2].value) / firstInput[0].value
-                        if (!(javob in [Infinity, NaN, undefined, null])) {
-                            document.getElementById('javob').innerHTML = `X = ${firstInput[1].value} * ${firstInput[2].value} / ${firstInput[0].value} = <span id="fourth-res">${javob}</span>`
+                        if (!([Infinity, NaN, undefined, null].includes(javob))) {
+                            document.getElementById('javob').innerHTML = `X = ${firstInput[1].value} * ${firstInput[2].value} / ${firstInput[0].value} = <span id="fourth-res">${javob.toFixed(3)}</span>`
                         }
                         else {
                             document.getElementById('javob').innerHTML = `<span id="fourth-res">Xaolik, mumkin bo'lmagan qiymatlarni kiritdingiz!</span>`
@@ -419,6 +423,12 @@
 
         <section class="info display" id="info">
             <h1><i class="fa-solid fa-flask"></i>PROKimyogar</h1>
+            <h2>
+                PROKimyogar dasturi kimyoviy formulalar, molekulyar massa va elementlar jadvali uchun qulay vosita hisoblanadi. Ushbu dastur orqali siz ishingizni osonlashtirishingiz mumkin.
+            </h2>
+            <h3>
+                Quyida dastur bo'limlari haqida qisqacha ma'lumot berilgan:
+            </h3>
             <div>
                 <span>
                     Molekulyar massa    >
@@ -498,7 +508,7 @@
                     Versiya
                 </span>
                 <span>
-                    1.0.2
+                    1.1.0
                 </span>
             </div>
             <div>
@@ -593,7 +603,7 @@
                     historyList.innerHTML += `
                         <div>
                             <span>${history}</span>
-                            <span>${histories[history]}</span>
+                            <span class="history-value">${histories[history]}</span>
                         </div>
                     `
                 }
