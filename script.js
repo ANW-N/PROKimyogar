@@ -8,6 +8,11 @@ for (const i in atomicMasses) {
     document.getElementById('buttons').appendChild(button);
     button.classList.add('modda')
 }
+const fullScreenIcons = [
+    `<i class="fa-solid fa-compress"></i>`,
+    `<i class="fa-solid fa-expand"></i>`,
+]
+let currenntIcon = 1;
 const calculate = document.getElementById('calculate')
 const resultArea = document.getElementById('result')
 calculate.addEventListener('click', () => {
@@ -32,15 +37,43 @@ calculate.addEventListener('click', () => {
         resultArea.textContent = 'XATOLIK'
     }
 
-    histories[inputArea.textContent] = resultArea.textContent
-    localStorage.setItem('history', JSON.stringify(histories))
-    updateHistory()
+    if (Object.keys(histories).length >= 30) {
+        let i = 1;
+        let newHistories = {};
+        for (const key in histories) {
+            if (i > Object.keys(histories).length - 30) {
+                newHistories[key] = histories[key]
+            }
+            i++
+        }
+        histories = newHistories
+        i = 0
+    }
+    if (!['Infinity', 'NaN', 'XATOLIK', 'null', ''].includes(resultArea.textContent)) {
+        localStorage.setItem('history', JSON.stringify(histories))
+        histories[inputArea.textContent] = resultArea.textContent
+        updateHistory()
+    }
 })
 function fullScreen() {
     if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
+        document.documentElement.requestFullscreen().catch((err) => {
+            console.error(`Xatolik yuz berdi: ${err.message}`);
+        });
+    } else {
+        document.exitFullscreen().catch((err) => {
+            console.error(`Xatolik yuz berdi: ${err.message}`);
+        });
     }
 }
+
+const fullScreenBtn = document.getElementById('full-screen')
+
+fullScreenBtn.addEventListener('click', () => {
+    currenntIcon += 1
+    fullScreenBtn.innerHTML = fullScreenIcons[currenntIcon%2]
+    fullScreen()
+})
 const modalarJadvali = document.getElementById('moddalar_jadvali')
 function generateTable() {
     modalarJadvali.innerHTML = ''
@@ -83,7 +116,6 @@ function showDisplay(id, displayStyle = 'flex', activeTool = null) {
     for (const menu of menues) {
         menu.disabled = true
     }
-    fullScreen()
     blurAnimation.classList.add('start')
     animatsiyaBor=true
     setTimeout(() => {
@@ -160,8 +192,9 @@ searchBtn.addEventListener('click', () => {
         const symbolMatch = i.toLowerCase() === searchValue;
         const nameMatch = element[3] && element[3].toString().toLowerCase().includes(searchValue);
         const numberMatch = element[4] && element[4].toString() === searchValue;
+        const massMatch = element[1] && element[1].toString() === searchValue;
 
-        if (symbolMatch || nameMatch || numberMatch) {
+        if (symbolMatch || nameMatch || numberMatch || massMatch) {
             isFound = true;
             const modda = document.createElement('div');
             modda.classList.add('modda', 'jadvalChild');
@@ -438,7 +471,8 @@ tools.addEventListener('mouseenter', () => {
         if (tools.classList.contains('onTable')) {
             searchArea.style.display = 'flex'
         }
-        themeToggle.style.display = 'block'
+        fullScreenBtn.style.display = 'block'
+        themeToggle.style.display = 'flex'
         themeIcon.style.display = 'block'
         installBtn.style.display = 'flex'
         clearTimeout(this)
@@ -452,6 +486,7 @@ tools.addEventListener('mouseleave', () => {
     if (tools.classList.contains('onTable')) {
         searchArea.style.display = 'none'
     }
+    fullScreenBtn.style.display = 'none'
     themeToggle.style.display = 'none'
     themeIcon.style.display = 'none'
     installBtn.style.display = 'none'
@@ -465,13 +500,19 @@ document.addEventListener('keydown', (key) => {
     }
 
     if (key.key === 'Enter' && tools.classList.contains('onCalculator')) {
+        document.activeElement.blur()
         calculate.click()
     }
-
-    if (key.key === 'Backspace' && tools.classList.contains('onCalculator')) {
+    else if (key.key === 'Backspace' && tools.classList.contains('onCalculator')) {
         misol.pop()
         generateInput(misol)
     }
+    else if (key.key === 'Delete' && tools.classList.contains('onCalculator')) {
+        misol = []
+        generateInput(misol)
+        resultArea.textContent = '0'
+    }
+
 })
 document.addEventListener('keyup', (event) => {
     if (event.key === 'Backspace') {
