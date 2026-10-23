@@ -5,20 +5,25 @@
 
     --calculators-text: #0096b4;
     --text2: #0096b4;
+    --modda: rgba(30, 30, 30, 0.3);
     --input-color: #fff7f7;
     
     --accent-color: #38bdf8;
-    --footer-background: rgba(255, 255, 255, 0.3);
+    --footer-background: rgba(255, 255, 255, 0.2);
     --accent-strong: #0ea5e9;
-    --footer-menu-background: rgba(0, 0, 0, 0.3);
+    --footer-menu-background: rgba(255, 255, 255, 0.3);
     --text-color: #fff;
-    --select-back: #2e2e2e;
-    --select-font: #dbdbdb;
+    --select-back: #000;
+    --select-font: #fff;
+
+    --theme: rgba(255, 238, 0, 0.5);
 
     --red: #f52b4d;
     --yellow: rgba(248, 231, 80, 1);
     --blue: #0ff;
     --green: #0f0;
+
+    --tools: rgba(30, 41, 59, 0.01);
 }
 html {
     height: 100%;
@@ -29,29 +34,32 @@ html {
 }
 body.light-mode {
     --yellow: rgb(255, 153, 0);
+    --modda: rgba(95, 92, 92, 0.1);
     --background-color: #f5f5f5;
     --card-color: rgb(255, 255, 255);
-    --footer-background: rgba(0, 0, 0, 0.3);
-    --footer-menu-background: rgba(255, 255, 255, 0.3);
+    --footer-background: rgba(0, 0, 0, 0.2);
+    --footer-menu-background: rgba(0, 0, 0, 0.3);
     --calculators-text: #ffc400;
     --text2: #ffc400;
     --text-color: #000;
+    --theme: rgba(65, 65, 65, 0.521);
     --input-color: #1d1d1f;
-    --select-font: #2e2e2e;
-    --select-back: #dbdbdb;
+    --select-font: #1d1d1f;
+    --select-back: #ffffff;
     
     --accent-color: #0284c7;
     --accent-strong: #0369a1;
+    --tools: rgba(30, 41, 59, 0.1);
 }
 body {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--background-color);
+    background: var(--background-color);
     height: 100%;
     margin: 0;
-    padding: 10px;
+    padding: 0 10px;
     overflow: auto;
 }
 
@@ -70,10 +78,10 @@ header.content_menu {
 
 .calcmr {
     overflow-x: hidden;
-    box-shadow: 4px 20px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.2);
     padding: 20px;
     border-radius: 15px;
-    background-color: var(--card-color);
+    background: var(--card-color);
     height: min(100%, 700px) !important;
     min-height: 492px !important;
     width: min(100%, 500px) !important;
@@ -81,6 +89,17 @@ header.content_menu {
 }
 .buttons {
     scrollbar-width: none;
+}
+
+.wraps {
+    transition: all 0.17s ease-in-out;
+    height: 0px;
+    border: none !important;
+    background: transparent !important;
+    width: calc(100% - 10px) !important;
+    position: absolute;
+    top: 5px !important;
+    left: 5px;
 }
 
 .input {
@@ -111,60 +130,67 @@ header.content_menu {
 }
 
 .buttons {
-    display: grid;
+    display: grid;  -webkit-background-clip: text;
+    background-clip: text;
+    background: linear-gradient(120deg, rgba(0, 119, 255, 0.09), rgba(212, 0, 255, 0.09));
+    border-radius: 10px;
+    backdrop-filter: blur(3px);
     grid-template-rows: repeat(9, auto);
     grid-auto-columns: 50px;
     overflow-x: auto;
     grid-auto-flow: column;
     gap: 5px;
     margin-top: 10px;
-    padding: 10px 0;
+    padding: 10px 5px;
 }
 .calculator-btn {
     display: grid;
     grid-template-columns: repeat(4, auto);
-    gap: 5px;
+    gap: 1.5px;
     margin-top: 10px;
 }
 
-.calculator_btn, .clear {
-    background: #1d1d1f;
+.calculator_btn, .clear, .calculator-back {
+    background: #1d1d1f05;
     color: var(--text2);
     border-radius: 10px;
     transition: background 0.3s, box-shadow 0.5s;
-    margin: 2px 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 2px 2px;
+    box-shadow: 0 2px 1px 0.1px rgba(0, 0, 0, 0.3);
     height: 2rem;
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.5rem;
-    border:none;
+    border: none;
     font-weight: 900;
 }
 
 .clear:hover {
-    background: rgba(255, 208, 0, 0.4);
     transform: translateY(-1px);
 }
 .clear {
-    border: 2px solid rgba(255, 208, 0);
-    color: rgba(255, 208, 0);
+    border: 0.9px dashed rgba(255, 208, 0, 0.4);
+}
+
+.clear:active {
+    transform: scale(0.95);
 }
 .calculator_btn:hover {
+    box-shadow: 0 3.5px 4px rgba(0, 0, 0, 0.3);
     transform: translateY(-1px);
-    box-shadow: 0 0 20px 0 var(--calculators-text);
     background: var(--text2);
     color: var(--card-color);
 }
 
-.clear:active, .calculator_btn:active {
+.calculator_btn:active {
     transform: scale(0.9);
 }
 .modda {
-    background-color: #292929;
+    background-color: var(--modda);
     /*border: 2px solid #00aeff;*/
     border: none;
     color: #00aeff;
     border-radius: 10px;
+    backdrop-filter: blur(3px);
     height: 1.7rem;
     font-family: sans-serif;
     font-weight: 700;
@@ -279,11 +305,11 @@ footer, .blur-animation {
     padding: 0;
     margin: 0 auto;
     overflow: hidden;
-    transition: height 0.3s ease-in-out, width 0.5s 0.12s;
+    transition: height 0.3s ease-in-out, width 0.5s 0.12s ease-in-out;
     box-sizing: border-box;
     display: flex;
     z-index: 9;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .blur-animation {
@@ -293,22 +319,27 @@ footer, .blur-animation {
 }
 
 footer {
-    border: 2px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(20px);
+    background: var(--footer-menu-background);
     z-index: 10 !important;
-    background: var(--footer-background);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.2);
+    color: var(--input-color);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), inset 0 0 20px 1px rgba(0, 0, 0, 0.3);
 }
 
 footer label {
     display: none;
-    width: 20%;
+    width: 19%;
+    min-width: 61.5px;
 }
 
 footer:hover, footer:active {
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    border-top: 2px solid rgba(148, 163, 184, 0.3);;
+    background: var(--tools);
+    backdrop-filter: blur(7px);
     height: 10%;
     width: 90%;
-    padding: 0 10px;
+    padding: 0;
     overflow-x: auto;
 }
 
@@ -324,12 +355,17 @@ footer:hover, footer:active {
 }
 
 select {
-    border: 2px solid #0077ff;
+    border: 1px solid #0077ff;
+    border-top: 2px solid #0060ce;
     border-radius: 10px;
     font-weight: 900;
     background: var(--select-back);
     letter-spacing: 2px;
     width: auto;
+    text-align: center;
+    height: max-content;
+    padding: auto 5px;
+    text-transform: uppercase;
     color: var(--select-font);
     height: 2rem;
 }
@@ -338,27 +374,46 @@ select {
     width: 100%;
     height: 100%;
     border-radius: 50px;
-    background: var(--footer-background);
-    backdrop-filter: blur(20px);
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.02);
     bottom: 0;
     animation: blur-animation 0.3s ease-out 0.4s 1 forwards;
 }
 
+#full-screen {
+    transition: all 0.3s ease-in-out;
+    display: none;
+    color: #fff;
+    position: absolute;
+    right: 55px;
+    aspect-ratio: 1/1;
+}
+
+#full-screen:active {
+    transform: scale(0.9);
+}
+
+.tools__button {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.5);
+    top: 10px;
+    border-radius: 20px;
+    width: 40px;
+    border-top: 1.2px solid rgba(255, 255, 255, 0.2);
+}
 #theme-toggle {
+    position: absolute;
     display: none;
     transition: all 0.3s ease-in-out;
     opacity: 0;
     visibility: hidden;
-    position: absolute;
-    top: 10px;
     right: 10px;
-    background: transparent;
+    justify-content: center;
+    align-items: center;
+    padding: 0 !important;
     font-size: 25px;
-    border: none;
-    border-radius: 10px;
-    width: 30px;
-    height: 30px;
+    height: 40px;
 }
 
 #theme-toggle:active {
@@ -370,8 +425,7 @@ select {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
-    margin: 0 5px;
+    border-radius: 25px;
     width: 100%;
     height: 99%;
     cursor: pointer;
@@ -397,7 +451,7 @@ input[type="radio"]:checked + div {
     background: var(--calculators-text);
     backdrop-filter: blur(20px);
     box-shadow: inset 0 0 10px rgba(2, 2, 2, 0.2);
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: none;
 }
 
 input[type="radio"]:checked + div .text {
@@ -466,7 +520,7 @@ input[type="radio"]:checked + div .text {
 
 .line {
     border: none;
-    background: var(--footer-background);
+    background: var(--footer-menu-background);
     height: 3px;
     border-radius: 1.5px;
 }
@@ -477,17 +531,18 @@ input[type="radio"]:checked + div .text {
     font-weight: 900;
     height: 2rem;
     background: linear-gradient(135deg, var(--accent-color), var(--accent-strong));
-    border-radius: 10px;
+    border-radius: 20px;
+    min-height: 40px;
     border: none;
     transition: 0.3s;
 }
 
 .cproporsia:hover {
-    transform: scale(1.1);
-    box-shadow: 0 5px 20px #ddd;
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
 }
 .cproporsia:active {
-    transform: scale(0.9);
+    transform: scale(0.95);
 }
 .proporsia div h1 {
     text-align: center;
@@ -495,12 +550,37 @@ input[type="radio"]:checked + div .text {
 }
 
 .proporsia input {
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    width: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    background: var(--card-color);
+    width: 100%;
+    color: var(--text-color);
+    font-weight: 900;
+    font-size: 1.2rem;
+    font-family: 'Courier New', Courier, monospace;
+    max-width: 270px;
     text-align: center;
     height: 3rem;
+    min-height: 40px;
 }
+
+.proporsia input:focus {
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-strong);
+}
+
+
+.proporsia h1 {
+    height: 3rem;
+    max-width: 270px;
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--calculators-text);
+}
+
 
 .proporsia_result {
     width: 100%;
@@ -537,19 +617,19 @@ input[type="radio"]:checked + div .text {
 }
 
 .s {
-    box-shadow: 0 6px 4px rgba(0, 0, 0, 0.3), inset 0 -10px 0 5px #ffd86b !important;
+    border: 3px dashed #ffd86b !important;
 }
 
 .k {
-    box-shadow: 0 6px 4px rgba(0, 0, 0, 0.3), inset 0 -10px 0 5px #6fa8ff !important;
+    border: 3px dashed #6fa8ff !important;
 }
 
 .y {
-    box-shadow: 0 6px 4px rgba(0, 0, 0, 0.3), inset 0 -10px 0 5px #5ac782 !important;
+    border: 3px dashed #5ac782 !important;
 }
 
 .p {
-    box-shadow: 0 6px 4px rgba(0, 0, 0, 0.3), inset 0 -10px 0 5px #f38bb5 !important;
+    border: 3px dashed #f38bb5 !important;
 }
 
 .info {
@@ -558,8 +638,12 @@ input[type="radio"]:checked + div .text {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: 900;
     letter-spacing: 1px;
-    padding: 5%;
+    padding: 5px;
     padding-bottom: 30px;
+}
+
+.info input {
+    display: none;
 }
 
 .info div {
@@ -620,6 +704,7 @@ input[type="radio"]:checked + div .text {
 .settings div {
     margin: 10px 0;
     display: flex;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)) !important;
     flex-direction: column;
 }
 
@@ -636,16 +721,38 @@ input[type="radio"]:checked + div .text {
     border-radius: 20px;
     margin-top: 10px;
     overflow-y: auto;
+    border: 0.5px solid rgba(255, 255, 255, 0.2) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.wrap-infos {
+    display: grid;
+    grid-template-columns: repeat(1, auto);
+}
+
+.info div {
+    padding: 20px 7px 20px 7px !important;
 }
 
 .info div .content {
     display: none;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.2);
 }
 
-.info div:hover .content, .info div:active .content {
+.info input:checked + div .content{
     display: block;
 }
 
+.info input:checked + div {
+    padding-bottom: 7px !important;
+}
 .name {
     justify-content: center !important;
     font-size: 2rem;
@@ -683,6 +790,7 @@ input[type="radio"]:checked + div .text {
 
 .wrap-contents h1 {
     color: var(--red);
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .jadvalChild {
@@ -693,13 +801,14 @@ input[type="radio"]:checked + div .text {
 }
 
 .tools {
-    background: rgba(30, 41, 59, 0.96);
+    background: var(--tools);
     width: min(90%, 500px);
-    height: 3%;
+    height: 20px;
     position: fixed;
+    backdrop-filter: blur(7px);
     top: 1%;
     border-radius: 20px;
-    transition: 0.3s ease-out;
+    transition: 0.2s ease-out;
     border: 1px solid rgba(148, 163, 184, 0.4);
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
     z-index: 11;
@@ -707,7 +816,6 @@ input[type="radio"]:checked + div .text {
 
 #install-btn {
     position: absolute;
-    top: 10px;
     left: 50%;
     transform: translateX(-50%);
     display: none;
@@ -717,19 +825,29 @@ input[type="radio"]:checked + div .text {
 
     padding: 12px 18px;
     border: 0;
-    border-radius: 14px;
+    width: auto !important;
+    border-radius: inherit;
 
-    background: var(--accent-color);
-    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    color: whitesmoke;
+
+    backdrop-filter: blur(2px);
 
     font: inherit;
     cursor: pointer;
 }
 
 .tools:hover {
-    padding-top: 0;
-    height: 10%;
-    box-shadow: inset 0 0 20px 5px var(--calculators-text);
+    padding: 5px;
+    height: 62px;
+    /*box-shadow: inset 0 0 20px 5px #0096b4;*/
+}
+
+.tools:hover .wraps {
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-top: 1.2px solid rgba(255, 255, 255, 0.2) !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    height: 50px;
 }
 
 .tools:hover #theme-toggle {
@@ -746,13 +864,16 @@ button {
 .settings div {
     padding: 10px;
     height: min-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     overflow-y: auto !important;
     width: 100%;
 }
 
 .tools.onCalculator:hover {
     height: 30%;
-    padding-top: 50px;
+    padding-top: 57px;
 }
 
 #history {
@@ -763,6 +884,7 @@ button {
     gap: 10px;
     width: 100%;
     padding: 10px;
+    letter-spacing: 1.2px;
     height: 100%;
     overflow-y: auto;
     color: var(--calculators-text);
@@ -796,8 +918,9 @@ button {
 }
 
 .history-value {
-    color: var(--accent-color) !important;
+    color: var(--calculators-text) !important;
     font-weight: 900;
+    letter-spacing: 1px;
     text-align: right;
     width: 50%;
     overflow-x: auto;
@@ -808,16 +931,22 @@ button {
 }
 
 #history-clear {
-    background: transparent;
-    border: 2px solid var(--red);
+    background: rgba(0, 0, 0, 0.5);
+    border: 0.02px solid rgba(255, 255, 255, 0.1);;
+    border-top: 0.05px solid rgba(255, 255, 255, 0.2);
     color: var(--red);
     font-weight: 900;
-    border-radius: 10px;
+    border-radius: inherit;
     padding: 5px 10px;
-    width: min-content;
+    transition: 0.3s ease-in-out;
+    height: 40px;
+    aspect-ratio: 1/1;
     position: absolute;
     left: 10px;
-    top: 10px;
+}
+
+#history-clear:active {
+    transform: scale(0.9);
 }
 
 .wrap-nums {
@@ -848,25 +977,32 @@ button {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    width: 100%;
-    padding: 10px;
+    color: var(--input-color);
+    width: 100% !important;
+    padding: 5px;
+    height: 50px;
 }
 
 #search input {
-    width: 80%;
-    height: 2rem;
-    border-radius: 10px;
-    border: 2px solid var(--accent-color);
-    background: var(--select-back);
-    color: var(--select-font);
+    width: calc(100% - 40px) !important;
+    height: 40px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.2);
+    color: #eef1f2;
     padding: 0 10px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    border-radius: 16px;
 }
 
 #search button {
-    background: var(--accent-color);
-    color: var(--card-color);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
     border: none;
-    border-radius: 10px;
+    height: 40px;
+    aspect-ratio: 1/1;
+    border-radius: 20px;
     padding: 5px 10px;
     font-weight: 900;
 }
@@ -882,17 +1018,50 @@ button {
     color: var(--calculators-text);
 }
 .tools.tools.onTable:hover {
-    height: 100px;
-    padding-top: 50px;
-    padding-right: 10px;
+    height: 118px;
+    padding-top: 58px;
+}
+
+input:focus {
+    border: 1px solid #0077ff !important;
+}
+
+*:focus {
+    outline: none;
+}
+
+button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+@media only screen and (max-width: 282px) {
+    #settings > div {
+        flex-direction: column !important;
+    }
 }
 
 @media only screen and (max-width: 900px) {
     .calcmr, header {
-        width: 100%;
-        height: 100%;
+        width: 100% !important;
+        height: 100% !important;
         box-sizing: border-box;
         overflow-x: hidden;
+        border-radius: 0;
+    }
+
+    .tools:hover {
+        width: 90% !important;
+        transform: translateY(7px);
+    }
+    body {
+        padding: 0;
     }
     footer:hover, footer:active {
         height: 10%;
@@ -985,8 +1154,9 @@ button {
 
     color: #f8fafc;
     background: rgba(15, 23, 42, 0.97);
-    border: 1px solid rgba(148, 163, 184, 0.3);
-    border-radius: 18px;
+    border: 0.5px solid rgba(148, 163, 184, 0.3);
+    border-top: 1px solid rgba(148, 163, 184, 0.4);
+    border-radius: 20px;
     box-shadow: 0 18px 55px rgba(0, 0, 0, 0.3);
 
     backdrop-filter: blur(18px);
