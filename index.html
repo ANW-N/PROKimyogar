@@ -86,7 +86,7 @@
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
     >
-    <link rel="stylesheet" href="./style.css?v=1.1.2">
+    <link rel="stylesheet" href="./style.css?v=1.2.0">
 
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PN2B3WJX3R"></script>
@@ -246,11 +246,15 @@
     </script>
 
     <section class="tools onCalculator" id="tools">
-        <button id="install-btn">
+        <div class="wraps tools__button"></div>
+        <button id="install-btn" class="tools__button">
             <i class="fa-solid fa-download"></i>
             Ilovani o‘rnatish
         </button>
-        <button id="theme-toggle">
+        <button type="button" class="tools__button" id="full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </button>
+        <button class="tools__button" id="theme-toggle">
                 <div id="theme-icon">
                     <i class="fa-solid fa-sun fa-spin" style="color: rgb(255, 212, 59);"></i>
                 </div>
@@ -270,14 +274,14 @@
                     })
                 </script>
         </button>
-        <div id="history">
-            <button type="button" id="history-clear"><i class="fa-solid fa-trash-can"></i></button>
-            <span id="no-history">No history</span>
+        <div class="tools__button" id="history">
+            <button type="button" class="tools__button" id="history-clear"><i class="fa-solid fa-trash-can"></i></button>
+            <span id="no-history"><i class="fa-solid fa-clock-rotate-left"></i> No history</span>
             <div id="history-list">
             </div>
         </div>
 
-        <div id="search">
+        <div id="search" class="tools__button">
             <input type="search" placeholder="Elementni qidirish..." id="search-input">
             <button type="button" id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
@@ -303,7 +307,7 @@
                 <button type="button" id="clear" class="clear">C</button>
                 <button type="button" class="calculator_btn qavs">(</button>
                 <button type="button" class="calculator_btn qavs">)</button>
-                <button type="button" id="backspace" class="clear"><i class="fa-solid fa-delete-left"></i></button>
+                <button type="button" id="backspace" class="calculator-back"><i class="fa-solid fa-delete-left"></i></button>
 
                 <script>
                     let timer;
@@ -429,67 +433,98 @@
             <h3>
                 Quyida dastur bo'limlari haqida qisqacha ma'lumot berilgan:
             </h3>
-            <div>
-                <span>
-                    Molekulyar massa    >
-                </span>
-                <span class="content">
-                    Kalkulyator bo'limiga kirib element formulasini yozing va qulay hisoblang!<br>
-                    <br>
-                    Belgilar: *(Yulduzcha) bu ko'paytirishni anglatadi, Masalan suv formulasida H2O ni yozish uchun H*2O kabi yoziladi bu yerda *2 shu elementdan ikkita borligini anglatadi.<br><br>
-                    () - (Kavslar) bu guruhlab ishlash imkonini beradi masalan (HO)*2 bu H va O guruhidan ikkita ekanini anglatadi va quyidagicha hisoblanadi: (1+16)*2.
-                </span>
-            </div>
-            <div>
-                <span>
-                    Proporsiya  >
-                </span>
-                <span class="content">
-                    Siz proporsia bo'limiga kirib ma'lum qiymatlar orqali nomalum qiymatni oson topishingiz  mumkin. <br><br>
-                    Masalan: 9gr H*2O necha mol? H*2O ni kalkulyatorda hisoblab olamiz va: 18 --- 1 | 9 --- X kabi kiritamiz va hisoblash tugmasini bosishimiz bilan yechilish uslubi bilan javobni olasiz!
-                </span>
-            </div>
-            <div>
-                <span>
-                Elementlar jadvali  >
-                </span>
-                <span class="content">
-                    Siz qog'oz olib yurmasdan shu bo'limdan har bir element a'lumotini topishingiz mumkin. Sizga tushunarsiz ko'rinishi mumkin bo'lgan qismi shu yerda, masalan H elementida: 1.008 | 1 bu aniq massa 1.008 ga va yaxlitlaganda 1 ga tengligi ko'rsatilgan, hisblaganda qaysini olishini sozlamalar orqali o'zgartirishingiz mumkin.
-                </span>
-            </div>
-            <div>
-                <span>
-                    Vazifalar paneli    >
-                </span>
-                <span class="content">
-                    Yuqoridagi vazifalar paneli ustiga sichqonchani olib borish yoki ustiga bosish orqali chiqarishingiz mumkin.<br><br>
-                    Siz ushbu panel orqali shu bo'limga kerakli funksiyadan foydalanishingiz mumkin. Masalan siz kalkulyator bo'limida bo'lsangiz sizga hisoblar tarixi ko'rsatiladi, jadval panelida esa elementlarni qidirishingiz mumkin.
-                </span>
-            </div>
-            <div>
-                <span>
-                    Elementlarni qidirish    >
-                </span>
-                <span class="content">
-                    Elementni qidirish joyiga elementning istalgan hossasini yozishingiz mumkin, masalan: nomi, indeksi, massasi va hokazo.
-                </span>
-            </div>
-            <div>
-                <span>
-                    Sozlamalar    >
-                </span>
-                <span class="content">
-                    Siz ushbu bo'lim orqali dastur sozlamalarini o'zgartirishingiz mumkin. Masalan hisoblash usulini aniq yoki yaxlitlashni tanlashingiz mumkin. Shuningdek dasturchi haqida ma'lumotlarni ham shu yerda topishingiz mumkin.
-                </span>
-            </div>
-            <div>
-                <span>
-                    Pastdagi menyu paneli    >
-                </span>
-                <span class="content">
-                    Siz ushbu panel orqali dastur bo'limlariga o'tishingiz mumkin. Masalan siz kalkulyator bo'limida bo'lsangiz sizga hisoblar tarixi ko'rsatiladi, jadval panelida esa elementlarni qidirishingiz mumkin.
-                </span>
-            </div>
+
+            <span class="wrap-infos">
+                
+                <label class="info-open-close">
+                    <input type="radio" name="info" class="info__radio">
+                    <div>
+                        <span>
+                            Molekulyar massa    >
+                        </span>
+                        <span class="content">
+                            Kalkulyator bo'limiga kirib element formulasini yozing va qulay hisoblang!<br>
+                            <br>
+                            Belgilar: *(Yulduzcha) bu ko'paytirishni anglatadi, Masalan suv formulasida H2O ni yozish uchun H*2O kabi yoziladi bu yerda *2 shu elementdan ikkita borligini anglatadi.<br><br>
+                            () - (Kavslar) bu guruhlab ishlash imkonini beradi masalan (HO)*2 bu H va O guruhidan ikkita ekanini anglatadi va quyidagicha hisoblanadi: (1+16)*2.
+                        </span>
+                    </div>
+                </label>
+                
+                <label class="info-open-close">
+                    <input type="radio" name="info" class="info__radio">
+                    <div>
+                        <span>
+                            Proporsiya  >
+                        </span>
+                        <span class="content">
+                            Siz proporsia bo'limiga kirib ma'lum qiymatlar orqali nomalum qiymatni oson topishingiz  mumkin. <br><br>
+                            Masalan: 9gr H*2O necha mol? H*2O ni kalkulyatorda hisoblab olamiz va: 18 --- 1 | 9 --- X kabi kiritamiz va hisoblash tugmasini bosishimiz bilan yechilish uslubi bilan javobni olasiz!
+                        </span>
+                    </div>
+                </label>
+
+                <label class="info-open-close">
+                    <input type="radio" name="info" class="info__radio">
+                    <div>
+                        <span>
+                        Elementlar jadvali  >
+                        </span>
+                        <span class="content">
+                            Siz qog'oz olib yurmasdan shu bo'limdan har bir element a'lumotini topishingiz mumkin. Sizga tushunarsiz ko'rinishi mumkin bo'lgan qismi shu yerda, masalan H elementida: 1.008 | 1 bu aniq massa 1.008 ga va yaxlitlaganda 1 ga tengligi ko'rsatilgan, hisblaganda qaysini olishini sozlamalar orqali o'zgartirishingiz mumkin.
+                        </span>
+                    </div>
+                </label>
+                
+                <label class="info-open-close">
+                    <input type="radio" name="info" class="info__radio">
+                    <div>
+                        <span>
+                            Vazifalar paneli    >
+                        </span>
+                        <span class="content">
+                            Yuqoridagi vazifalar paneli ustiga sichqonchani olib borish yoki ustiga bosish orqali chiqarishingiz mumkin.<br><br>
+                            Siz ushbu panel orqali shu bo'limga kerakli funksiyadan foydalanishingiz mumkin. Masalan siz kalkulyator bo'limida bo'lsangiz sizga hisoblar tarixi ko'rsatiladi, jadval panelida esa elementlarni qidirishingiz mumkin.
+                        </span>
+                    </div>
+                </label>
+
+                <label class="info-open-close">
+                    <input type="radio" name="info" class="info__radio">
+                    <div>
+                        <span>
+                            Elementlarni qidirish    >
+                        </span>
+                        <span class="content">
+                            Elementni qidirish joyiga elementning istalgan hossasini yozishingiz mumkin, masalan: nomi, indeksi, massasi va hokazo.
+                        </span>
+                    </div>
+                </label>
+
+                <label class="info-open-close">
+                    <input type="radio" name="info" class="info__radio">
+                    <div>
+                        <span>
+                            Sozlamalar    >
+                        </span>
+                        <span class="content">
+                            Siz ushbu bo'lim orqali dastur sozlamalarini o'zgartirishingiz mumkin. Masalan hisoblash usulini aniq yoki yaxlitlashni tanlashingiz mumkin. Shuningdek dasturchi haqida ma'lumotlarni ham shu yerda topishingiz mumkin.
+                        </span>
+                    </div>
+                </label>
+
+                <label class="info-open-close">
+                    <input type="radio" name="info" class="info__radio">
+                        <div>
+                        <span>
+                            Pastdagi menyu paneli    >
+                        </span>
+                        <span class="content">
+                            Siz ushbu panel orqali dastur bo'limlariga o'tishingiz mumkin. Masalan siz kalkulyator bo'limida bo'lsangiz sizga hisoblar tarixi ko'rsatiladi, jadval panelida esa elementlarni qidirishingiz mumkin.
+                        </span>
+                    </div>
+                </label>
+            </span>
             <h4><i class="fa-solid fa-copyright"></i>Barcha huquqlar himoyalangan!</h4>
         </section>
 
@@ -508,12 +543,12 @@
                     Versiya
                 </span>
                 <span>
-                    1.1.0
+                    1.2.0
                 </span>
             </div>
             <div>
                 <span>
-                    Vibratsiya
+                    Tebranish
                 </span>
                 <span>
                     <select id="vibratsiya">
