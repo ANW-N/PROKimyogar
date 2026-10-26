@@ -25,9 +25,10 @@ calculate.addEventListener('click', () => {
                 satr += '+' + atomicMasses[i][1]
             }
         }
-        else {
+        else if (i === '(') {
+            satr += '+' + i
+        } else {
             satr += i
-        }
     }
     try {
         resultArea.textContent = eval(
