@@ -29,6 +29,7 @@ calculate.addEventListener('click', () => {
             satr += '+' + i
         } else {
             satr += i
+        }
     }
     try {
         resultArea.textContent = eval(
