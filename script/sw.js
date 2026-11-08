@@ -10,7 +10,7 @@ const ASSETS_TO_CACHE = [
     "./dataset.js",
     "./DOMElements.js",
     "./events.js",
-    "./generateButton.js",
+    "./generateButtons.js",
     "./handlers.js",
     "./proporsia.js",
     "./registerSW.js",
