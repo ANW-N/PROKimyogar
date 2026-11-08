@@ -104,6 +104,7 @@ header.content_menu {
 
 .input {
     width: 100%;
+    position: relative;
     background: var(--input-color);
     padding: 10px;
     color: var(--calculators-text);
@@ -134,7 +135,6 @@ header.content_menu {
     background-clip: text;
     background: linear-gradient(120deg, rgba(0, 119, 255, 0.09), rgba(212, 0, 255, 0.09));
     border-radius: 10px;
-    backdrop-filter: blur(3px);
     grid-template-rows: repeat(9, auto);
     grid-auto-columns: 50px;
     overflow-x: auto;
@@ -185,12 +185,12 @@ header.content_menu {
     transform: scale(0.9);
 }
 .modda {
-    background-color: var(--modda);
+    background: var(--modda);
     /*border: 2px solid #00aeff;*/
     border: none;
     color: #00aeff;
     border-radius: 10px;
-    backdrop-filter: blur(3px);
+    will-change: transform;
     height: 1.7rem;
     font-family: sans-serif;
     font-weight: 700;
@@ -314,12 +314,12 @@ footer, .blur-animation {
 
 .blur-animation {
     background: transparent;
-    transition: height 0.2s ease-in-out, width 0.3s 0.1s;
+    transition: height 0.1s ease-in-out, width 0.2s 0.05s;
     border: none;
 }
 
 footer {
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(12px);
     background: var(--footer-menu-background);
     z-index: 10 !important;
     color: var(--input-color);
@@ -378,7 +378,7 @@ select {
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.02);
     bottom: 0;
-    animation: blur-animation 0.3s ease-out 0.4s 1 forwards;
+    animation: blur-animation 0.3s ease-out 0.3s 1 forwards;
 }
 
 #full-screen {
@@ -449,7 +449,6 @@ select {
 
 input[type="radio"]:checked + div {
     background: var(--calculators-text);
-    backdrop-filter: blur(20px);
     box-shadow: inset 0 0 10px rgba(2, 2, 2, 0.2);
     border: none;
 }
@@ -569,8 +568,7 @@ input[type="radio"]:checked + div .text {
     box-shadow: 0 0 10px var(--accent-strong);
 }
 
-
-.proporsia h1 {
+.proporsia .x {
     height: 3rem;
     max-width: 270px;
     width: 100%;
@@ -617,19 +615,19 @@ input[type="radio"]:checked + div .text {
 }
 
 .s {
-    border: 3px dashed #ffd86b !important;
+    border: 3px solid #ffd86b;
 }
 
 .k {
-    border: 3px dashed #6fa8ff !important;
+    border: 3px solid #6fa8ff;
 }
 
 .y {
-    border: 3px dashed #5ac782 !important;
+    border: 3px solid #5ac782;
 }
 
 .p {
-    border: 3px dashed #f38bb5 !important;
+    border: 3px solid #f38bb5;
 }
 
 .info {
@@ -725,6 +723,39 @@ input[type="radio"]:checked + div .text {
     border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
 }
 
+.settings label {
+    display: block;
+    background: #fff;
+    position: relative;
+    border-radius: 10px;
+    height: calc(1rem + 2px) !important;
+    padding: none;
+    width: calc(2rem + 2px) !important;
+    border: 1px solid #c5c5c5;
+    transition: 0.2s ease-in-out;
+}
+
+.settings label span.circle {
+    width: 1rem;
+    aspect-ratio: 1/1;
+    transition: transform 0.3s ease-out, all 0.2s ease-in-out;
+    background: #000;
+    border: 1px solid #595959;
+    position: absolute;
+    border-radius: 1rem;
+}
+
+.settings input:checked + label span.circle {
+    background: var(--card-color);
+    border: 1px solid #c5c5c5;
+    transform: translateX(1rem);
+}
+
+.settings input:checked + label {
+    border: 1px solid #0099e0;
+    background: #00aeff;
+}
+
 .wrap-infos {
     display: grid;
     grid-template-columns: repeat(1, auto);
@@ -741,7 +772,7 @@ input[type="radio"]:checked + div .text {
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-top: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 20px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(7px);
     background: rgba(255, 255, 255, 0.4);
     box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.2);
 }
@@ -779,7 +810,7 @@ input[type="radio"]:checked + div .text {
     width: min-content;
     height: min-content;
     aspect-ratio: 1/1;
-    border: 1px solid var(--input-color);
+    border: 1.4px solid var(--red);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -796,13 +827,16 @@ input[type="radio"]:checked + div .text {
 .jadvalChild {
     max-height: 100%;
     color: var(--green) !important;
+    background: #000;
+    will-change: transform;
     padding-bottom: 15px !important;
     gap: 5px;
+    border-radius: 15px !important;
 }
 
 .tools {
     background: var(--tools);
-    width: min(90%, 500px);
+    width: min(70%, 500px);
     height: 20px;
     position: fixed;
     backdrop-filter: blur(7px);
@@ -986,7 +1020,7 @@ button {
 #search input {
     width: calc(100% - 40px) !important;
     height: 40px;
-    border: 2px solid rgba(0, 0, 0, 0.3);
+    border: 1.5px solid #0077ff;
     background: rgba(0, 0, 0, 0.2);
     color: #eef1f2;
     padding: 0 10px;
@@ -1001,12 +1035,18 @@ button {
     color: #fff;
     border: none;
     height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     aspect-ratio: 1/1;
     border-radius: 20px;
-    padding: 5px 10px;
+    padding: 5px;
     font-weight: 900;
 }
 
+.settings input {
+    display: none;
+}
 .developer {
     display: flex;
     justify-content: space-between;
@@ -1023,7 +1063,7 @@ button {
 }
 
 input:focus {
-    border: 1px solid #0077ff !important;
+    border: 1px solid #0077ff;
 }
 
 *:focus {
@@ -1039,6 +1079,19 @@ button:focus {
     -webkit-tap-highlight-color: transparent;
     -webkit-appearance: none;
     appearance: none;
+}
+
+
+.how {
+    position: absolute;
+    top: 5px;
+    font-size: 1.2rem;
+    color: #0096b4;
+    backdrop-filter: blur(2px);
+    font-weight: 900;
+    border: none;
+    background: transparent;
+    left: 5px;
 }
 
 @media only screen and (max-width: 282px) {
@@ -1154,9 +1207,8 @@ button:focus {
 
     color: #f8fafc;
     background: rgba(15, 23, 42, 0.97);
-    border: 0.5px solid rgba(148, 163, 184, 0.3);
-    border-top: 1px solid rgba(148, 163, 184, 0.4);
-    border-radius: 20px;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 18px;
     box-shadow: 0 18px 55px rgba(0, 0, 0, 0.3);
 
     backdrop-filter: blur(18px);
